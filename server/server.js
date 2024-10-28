@@ -31,7 +31,7 @@ app.post('/process-request', async (req, res) => {
                     content: `You are an assistant that processes user requests and checks if a request is valid or not. 
                     - If a user greets you with something like "hi", "hello", or "how are you", respond with a friendly greeting (e.g., "Hello! How can I assist you today?").
                     - After greeting, if the message contains a request, you must evaluate it.
-                    - If the request involves changing or updating content (such as making content more focused on a specific topic), respond with 'yes' **only**.
+                    - If the request involves changing or updating content something specific (such as making content more focused on a specific topic), respond with 'yes' **only**.
                     - If the request is about design changes (like colors, fonts, or UI layout), or anything that is not content-focused, consider the request as invalid.
                     - If a request is invalid or not clear, respond with 'Please make a valid request. Valid requests involve changing or updating information, such as making content more focused on a specific topic.`
                 },
@@ -42,7 +42,7 @@ app.post('/process-request', async (req, res) => {
             ]
         });
 
-        const responseData = response.choices[0].message.content
+        const responseData = response.choices[0].message.content.toLowerCase()
         const isValid = responseData === 'yes'
 
         if(isValid){
